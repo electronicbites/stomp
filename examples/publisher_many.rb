@@ -9,7 +9,16 @@ message = "ronaldo #{ARGV[0]}"
 
 for i in (1..300)
   puts "Sending message"
-  client.publish("/queue/ronaldo", "#{i}: #{message}", {:persistent => true})
+  client.publish("/topic/ronaldo", "#{i}: #{message}", {:persistent => true})
   puts "(#{Time.now})Message sent: #{i}"
-  sleep 1
 end
+
+
+for i in (1..100)
+  puts "Sending message"
+  client.publish("/topic/user_#{i}", "#{i}: a message to user #{i}", {:persistent => true})
+  puts "(#{Time.now})Message sent: #{i}"
+end
+
+
+client.publish("/topic/hungryblank", "auch du mein sohn brutus", {:persistent => true})
