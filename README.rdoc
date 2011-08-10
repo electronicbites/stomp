@@ -13,10 +13,10 @@ An implementation of the Stomp protocol for Ruby. See:
 
 
 ===Example Usage
-
-    client = Stomp::Client.new("test", "user", "localhost", 61613)
-    client.send("/my/queue", "hello world!")
-    client.subscribe("/my/queue") do |msg|
+    require 'stomp'
+    client = Stomp::Client.new("guest", "guest", "localhost", 61613)
+    client.publish("/queue/myfirst", "hello world!")
+    client.subscribe("/queue/myfirst") do |msg|
       p msg
     end
 
